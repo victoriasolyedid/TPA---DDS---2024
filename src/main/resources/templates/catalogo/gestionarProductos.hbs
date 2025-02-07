@@ -1,0 +1,26 @@
+{{#partial "contenido"}}
+    <div class="list-group container s-pad">
+
+        <h3 class="text-center">Mis Productos/Servicios canjeados</h3>
+
+        {{#each mis-prod-serv}}
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h4 class="mb-1">{{this.nombre}}</h4> <!-- Nombre del producto o servicio -->
+                </div>
+                <p class="mb-1">Valor en puntos: {{this.valorEnPuntos}}</p> <!-- Valor en puntos -->
+                <p class="mb-1">ID: {{this.id}}</p> <!-- ID del producto/servicio -->
+                {{#if this.imagen}}
+                    <img src="{{this.imagen}}" alt="Imagen del producto" class="img-thumbnail" /> <!-- Mostrar imagen si existe -->
+                {{/if}}
+                {{#if this.rubro}}
+                    <p class="mb-1">Rubro: {{this.rubro.rubro}}</p> <!-- Accediendo al campo 'rubro' del objeto embebido -->
+                {{/if}}
+            </a>
+        {{else}}
+            <p class="mb-1">No tienes colaboraciones registradas.</p>
+        {{/each}}
+
+    </div>
+{{/partial}}
+{{> layouts/main }}

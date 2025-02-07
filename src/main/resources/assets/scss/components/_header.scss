@@ -1,0 +1,100 @@
+@import '../base/colores';
+@import '../base/variables';
+/* Header */
+header {
+    background-color: $blanco;
+    padding: 0 100px;
+    
+    nav {
+
+        div {
+
+            a {
+                .logo-header {
+                    width: 50px;
+                    margin-right: 5px; 
+                }
+                .titulo-header {
+                    font-size: 1.3rem;
+                    font-weight: 400;
+                    margin: 0;
+                    line-height: 1.15em;
+                    color: $negro;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+
+            div {
+
+                .navbar {
+
+                    .navbar-nav {
+
+                        .nav-item {
+                            font-size: 17px;
+                            font-weight: 400;
+                            margin: 0 8px;
+
+                            .nav-link {
+                                &:hover, &.active:hover {
+                                    color: $principal;
+                                }
+                            }
+
+                            &:last-child {
+                                margin-right: 0;
+                            }                      
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* HEADER RESPONSIVE */
+@media screen and (min-width: 992px) and (max-width: 1250px) {
+    .header {
+        padding: 0 30px;
+    }
+
+    .logo-header {
+        width: 40px;
+    }
+        
+    .titulo-header {
+        font-size: 1.5rem;
+        line-height: 1.1em;
+    }
+
+    .nav-item {
+        font-size: 16px;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .header {
+        padding: 0 1rem 0 1rem;
+    }
+    
+    .logo-header {
+        width: 35px;
+    }
+    
+    .titulo-header {
+        font-size: 1.375rem;
+        line-height: 1.1em;
+    }
+    
+    .navbar {
+        justify-content: center;
+    }
+
+    .nav-item {
+        font-size: 1rem;
+        text-align: center;
+        margin: 0;
+    }
+}

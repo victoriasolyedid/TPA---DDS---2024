@@ -1,0 +1,91 @@
+{{#partial "contenido"}}
+
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col text-center">
+                <h3>Alta de Heladeras</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Columna para el formulario -->
+            <div class="col-md-6">
+                <form method="POST" action="/nueva-heladera">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre Significativo</label>
+                        <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="calle" class="form-label">Calle</label>
+                        <input name="calle" type="text" class="form-control" id="calle" placeholder="Calle">
+                    </div>
+                    <div class="mb-3">
+                        <label for="altura" class="form-label">Altura</label>
+                        <input name="altura" type="text" class="form-control" id="altura" placeholder="Altura">
+                    </div>
+                    <div class="mb-3">
+                        <label for="provincia" class="form-label">Provincia</label>
+                        <select name="provincia" class="form-select" id="provincia" aria-label="Seleccionar Provincia"
+                                onchange="cargarLocalidades(event)" disabled>
+                            <option selected>Seleccionar Provincia</option>
+                            <option value="06">Buenos Aires</option>
+                            <option value="10">Catamarca</option>
+                            <option value="22">Chaco</option>
+                            <option value="26">Chubut</option>
+                            <option value="02">Ciudad Autónoma de Buenos Aires</option>
+                            <option value="14">Córdoba</option>
+                            <option value="18">Corrientes</option>
+                            <option value="30">Entre Ríos</option>
+                            <option value="34">Formosa</option>
+                            <option value="38">Jujuy</option>
+                            <option value="42">La Pampa</option>
+                            <option value="46">La Rioja</option>
+                            <option value="50">Mendoza</option>
+                            <option value="54">Misiones</option>
+                            <option value="58">Neuquén</option>
+                            <option value="62">Río Negro</option>
+                            <option value="66">Salta</option>
+                            <option value="70">San Juan</option>
+                            <option value="74">San Luis</option>
+                            <option value="78">Santa Cruz</option>
+                            <option value="82">Santa Fe</option>
+                            <option value="86">Santiago del Estero</option>
+                            <option value="94">Tierra del Fuego</option>
+                            <option value="90">Tucumán</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="localidad" class="form-label">Localidad</label>
+                        <select name="localidad" id="localidad" class="form-select" aria-label="Seleccionar Localidad"
+                                onchange="marcarUbicacion()" disabled>
+                            <option selected>Seleccionar Localidad</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputDate" class="form-label">Fecha de Inicio de Funcionamento</label>
+                        <input name="fechaDeInicioDeFuncionamiento" type="date" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="capacidad" class="form-label">Capacidad</label>
+                        <input name="capacidad" type="text" class="form-control" placeholder="Capacidad">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="btn btn-primary">Recomendar puntos de colocación</button>
+                </form>
+            </div>
+
+            <!-- Columna para el mapa -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px; width: 100%;"></div>
+                <!--<button onclick="marcarUbicacion()">Marcar ubicación</button>-->
+            </div>
+        </div>
+        <!-- AGREGAMOS ESTO -->
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/localidades.js"></script>
+
+{{/partial}}
+{{> layouts/main }}

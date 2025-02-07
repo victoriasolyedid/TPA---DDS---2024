@@ -1,0 +1,14 @@
+{{#partial "contenido"}}
+    <div class='container'>
+        <h3>Cargar colaboración</h3>
+        <form action='/carga-masiva' method='post' enctype='multipart/form-data'>
+            <div class="col-md-6">
+                <label for="formFile" class="form-label mt-2">Seleccione un archivo .CSV</label>
+                <input class="form-control mb-3" type="file" id="formFile" name="file" accept=".csv">
+            </div>
+            <button type='submit' class='btn btn-primary'>Enviar</button>
+        </form>
+    </div>
+
+{{/partial}}
+{{> layouts/main }}

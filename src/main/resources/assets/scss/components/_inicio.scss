@@ -1,0 +1,189 @@
+@import '../base/colores';
+@import '../base/variables';
+@import '../base/mixins';
+@import '../base/extends';
+
+/* Banner */
+.banner {
+    @include img-fondo ('../images/banner.jpg', top);
+    @extend %img-fondo;
+    height: 800px;
+    justify-content: center;
+    align-items: center;
+
+    .overlay-banner {
+        /* background-color: hsla(0, 100%, 15%, 0.87); */
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100%;
+
+        .estudia {
+            font-size: 40px;
+            font-weight: $fuente-gruesa;
+            text-transform: uppercase;
+            color: $blanco;
+            letter-spacing: 10px;
+            text-align: center;
+
+            @include tablet {
+                font-size: 25px;
+                letter-spacing: 8px;
+            }
+
+            @include mobile {
+                font-size: 20px;
+                letter-spacing: 6px;
+            }
+        }
+    }
+}
+
+/* Secciones */
+.niveles {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    
+    a {
+        text-decoration: none;
+    }
+
+    h2 {
+        padding-top: 20px;
+        padding-bottom: 18px;
+        color: $blanco;
+        text-transform: uppercase;
+        font-size: 18px;
+        letter-spacing: 2px;
+
+        @include max-tablet {
+            padding-top: 15px;
+            padding-bottom: 13px;
+            font-size: 14px;
+        }
+    }
+
+    .nivel {
+        text-align: center;
+        background-color: $principal;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    
+        .img-nivel {
+            overflow: hidden;
+            
+            img {
+                transition: all 0.5s ease;
+                
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        } 
+    }
+
+    @include max-tablet {
+        max-width: 900px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Sección Misión Institucional */
+.mision {
+    display: grid;
+    align-content: center;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+    
+    p {
+        margin-bottom: 40px;
+
+        @include max-tablet {
+            margin-bottom: 30px;
+        }
+    }
+
+    @include tablet {
+        margin-bottom: 30px;
+    }
+
+    @include mobile {
+        padding: 0 20px;
+        margin-bottom: 30px;
+    }
+}
+
+.mision-grid {
+    @include grilla(1fr 1fr 1fr 1fr 1fr, 1fr 1fr, 30px 30px);
+    grid-template-areas: 
+        "rell tarj3"
+        "tarj1 tarj3"
+        "tarj1 tarj4"
+        "tarj2 tarj4"
+        "tarj2 rell2";
+    align-items: center;
+
+    .rell { grid-area: rell; }
+    .rell2 { grid-area: rell2; }
+    .tarj1 { grid-area: tarj1; }
+    .tarj2 { grid-area: tarj2; }
+    .tarj3 { grid-area: tarj3; }
+    .tarj4 { grid-area: tarj4; }
+
+    .tarjeta {
+        background-color: #fdfdfd;
+        border: 1px solid $gris-bordes;
+        height: 100%;
+        padding: 30px;
+        display: grid;
+        align-content: center;
+        box-shadow: 0px 0px 50px -30px $sombra;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background-color: $blanco;
+            box-shadow: 0px 0px 50px -15px $sombra;
+        }
+        
+        .mision-icon {
+            font-size: 40px;
+            color: $principal;
+            margin-bottom: -5px;
+
+            @include tablet {
+                font-size: 40px;
+                margin-bottom: -5px;
+            }
+
+            @include mobile {
+                margin-bottom: -5px;
+            }
+        }
+
+        @include mobile {
+            margin: 0 10px;
+        }
+    }
+
+    @include mobile {
+        grid-template-columns: 1fr; 
+        grid-template-rows: 1fr 1fr 1fr 1fr; 
+        gap: 20px 0;
+        grid-template-areas: 
+            "tarj1"
+            "tarj2"
+            "tarj3"
+            "tarj4";
+    }
+}
+
+.mapa {
+    height: auto;
+
+    @include mobile {
+        height: 350px;
+    }
+}

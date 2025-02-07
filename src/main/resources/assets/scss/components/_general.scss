@@ -1,0 +1,146 @@
+@import '../base/colores';
+@import '../base/variables';
+@import '../base/mixins';
+@import '../base/extends';
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5em;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+i {
+    font-style: normal;
+    
+    &.bi::before{
+        margin-right: 5px;
+    }
+}
+
+h2 {
+    font-size: 50px;
+    font-weight: $fuente-media;
+    line-height: 1em;
+
+    @include mobile {
+        font-size: 45px;
+    }
+}
+
+h3 {
+    font-size: 35px;
+    font-weight: $fuente-media;
+    line-height: 1em;
+    color: $principal;
+    margin-top: 35px;
+}
+
+h4 {
+    font-size: 1.3rem;
+    font-weight: $fuente-media;
+    margin-top: 10px;
+}
+
+.s-pad {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    
+    @include mobile {
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+}
+
+.s-unique {
+    min-height: 75vh;
+}
+
+.encabezado {
+    display: flex;
+    height: 400px;
+    align-items: end;
+    padding-bottom: 0;
+}
+
+.enc {
+    display: inline-block;
+    margin-bottom: 30px;
+    background: hsla(39, 98%, 59%, 0.7);
+    padding: 15px 25px;
+    backdrop-filter: blur(3px);
+}
+
+.centrar {
+    text-align: center;
+}
+
+.titulo {
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+    @include mobile {
+        margin-top: 0;
+    }
+}
+
+.lista {
+    li {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Botones */
+.boton {
+    font-family: 'Montserrat', sans-serif;
+    background-color: $principal;
+    color: $blanco;
+    border: 2px solid $principal;
+    border-radius: 50px;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 8px 28px;
+    font-weight: $fuente-media;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: $negro;
+        border-color: $negro;
+    }
+    
+    &.solo-bordes {
+        background-color: transparent;
+        color: $principal;
+        border: 2px solid $principal;
+        
+        &:hover {
+            background-color: $negro;
+            color: $blanco;
+            border-color: $negro;
+        }
+    }
+
+    &.enviar {
+        width: 100%;
+    }
+}
+

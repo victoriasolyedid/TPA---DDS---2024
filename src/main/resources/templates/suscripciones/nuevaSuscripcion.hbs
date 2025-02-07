@@ -1,0 +1,61 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col text-center">
+                <h3>Nueva suscripción</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Columna para el formulario -->
+            <div class="col-md-6">
+                <form method="POST" action="/nueva-suscripcion">
+                    <div class="mb-3">
+                        <label for="heladera" class="form-label">Heladera</label>
+                        <select name="heladera" class="form-select" id="heladera" aria-label="Seleccionar Heladera">
+                            <option selected>Seleccionar Heladera</option>
+                            {{#each heladeras}}
+                                <option value="{{id}}">{{nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="opciones" class="form-label">Elija un topic a suscribirse</label>
+                        <select name="suscripcion" class="form-select" id="opciones"
+                                aria-label="Seleccionar Suscripción" onchange="toggleNInput()">
+                            <option value="DESPERFECTO">DESPERFECTO</option>
+                            <option value="QUEDAN_N_VIANDAS">QUEDAN N VIANDAS</option>
+                            <option value="FALTAN_N_VIANDAS">FALTAN N VIANDAS</option>
+                        </select>
+                    </div>
+
+                    <!-- Campo de entrada para N, que solo aparece cuando es necesario -->
+                    <div class="mb-3" id="nInputContainer" style="display: none;">
+                        <label for="nValue" class="form-label">Ingrese el valor de N</label>
+                        <input type="number" name="nValue" id="nValue" class="form-control"
+                               placeholder="Escriba el valor de N">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleNInput() {
+            const topic = document.getElementById("opciones").value;
+            const nInputContainer = document.getElementById("nInputContainer");
+
+            // Mostrar el campo de N solo para las opciones que lo requieren
+            if (topic === "QUEDAN_N_VIANDAS" || topic === "FALTAN_N_VIANDAS") {
+                nInputContainer.style.display = "block";
+            } else {
+                nInputContainer.style.display = "none";
+            }
+        }
+    </script>
+
+{{/partial}}
+{{> layouts/main }}

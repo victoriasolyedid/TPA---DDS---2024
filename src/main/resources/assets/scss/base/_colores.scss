@@ -1,0 +1,34 @@
+$principal: darkred;
+$gris-claro: #f9f9f9;
+$gris-oscuro: #bfbfbf;
+$gris-bordes: #f0f0f0;
+
+$blanco: white;
+$negro: black;
+$rojo: #d70000;
+
+$sombra: rgba(0,0,0,0.3);
+
+a {
+    color: $principal;
+    
+    &:hover {
+        color: darken($principal, 20%);
+    }
+}
+
+.bg-oscuro {
+    background-color: $principal;
+}
+
+.bg-gris {
+    background-color: $gris-claro;
+}
+
+.color-blanco {
+    color: $blanco;
+
+    a {
+        color: $blanco;
+    }
+}

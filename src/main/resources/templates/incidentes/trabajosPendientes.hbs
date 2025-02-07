@@ -1,0 +1,33 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        <h3 class="text-center">Trabajos Pendientes</h3>
+        <br>
+        <div class="row">
+            <div class="col-md-6 d-flex flex-column">
+                <div class="alert-container flex-grow-1 overflow-auto">
+                    {{#each trabajosPendientes}}
+                        <div class="card border-danger mb-3 ml-3">
+                            <div class="card-header">{{this.heladera.nombre}}</div>
+                            <div class="card-body text-danger">
+                                <h5 class="card-title">{{this.incidente.fechaIncidente}}</h5>
+                                <p class="card-text">{{this.incidente.tipoIncidente}}</p>
+                                <p class="card-text"> Descripción: {{this.descripcion}}</p>
+                            </div>
+                        </div>
+                    {{else}}
+                        <p>No tiene trabajos pendientes por atender</p>
+                    {{/each}}
+                </div>
+            </div>
+
+            <!-- Columna para el mapa -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+{{/partial}}
+{{> layouts/main }}

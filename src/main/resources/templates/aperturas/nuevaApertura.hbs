@@ -1,0 +1,55 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        <div class="col text-center">
+            <h3>Reportar Incidente Solucionado</h3>
+        </div>
+        <div class="row">
+            <!-- Columna para el formulario a la izquierda -->
+            <div class="col-md-6">
+                <form action="/nueva-apertura" method="POST">
+                    <div class="mb-3">
+                        <label for="inputActualDate" class="form-label">Fecha</label>
+                        <input name="fecha" type="date" class="form-control" id="inputActualDate" value="{{currentDate}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="motivo" class="form-label">Motivo de Apertura</label>
+                        <select name="motivo" class="form-select" id="nombre">
+                            <option value="" disabled selected>Motivo de Apertura</option>
+                            <option value="1">Donar Vianda/s</option>
+                            <option value="2">Distribuir Vianda/s</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="heladera" class="form-label">Heladera</label>
+                        <select name="heladera" class="form-select" id="heladera">
+                            <option value="" disabled selected>Seleccionar Heladera</option>
+                            {{#each heladeras}}
+                            <option value="{{this.id}}" {{#if this.id ../heladera.id}}selected{{/if}}>{{this.nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Columna para el mapa a la derecha -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('inputActualDate').value = today;
+        });
+    </script>
+
+{{/partial}}
+{{> layouts/main }}

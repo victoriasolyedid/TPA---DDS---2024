@@ -1,0 +1,47 @@
+{{#partial "contenido"}}
+    <div class="row">
+        <div class="col text-center">
+            <h3>Publicar Producto o Servicio</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <form class="row g-3" method="POST" action="/prod-serv" enctype="multipart/form-data">
+            <div>
+                <!-- Nombre y Valor en Puntos -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" aria-label="Nombre">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="valorEnPuntos" class="form-control" placeholder="Valor en puntos"
+                               aria-label="Valor en puntos">
+                    </div>
+                </div>
+
+                <!-- Insertar Foto -->
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Insertar foto</label>
+                    <input class="form-control" name="foto" type="file" id="formFile" aria-label="Examinar">
+                </div>
+                <!-- Select Desplegable -->
+                <div class="mb-3">
+                    <label for="opciones" class="form-label">Ingrese o seleccione un rubro</label>
+                    <input list="sugerencias" id="opciones" name="rubro" class="form-control"
+                           placeholder="Escriba para buscar o agregar">
+                    <datalist id="sugerencias">
+                        {{#each rubros}}
+                        <option value="{{this.rubro.rubro}}">
+                        {{/each}}
+                    </datalist>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{{/partial}}
+{{> layouts/main }}

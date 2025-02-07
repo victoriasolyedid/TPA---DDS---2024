@@ -1,0 +1,759 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css");
+
+a {
+    color: darkred;
+}
+
+a:hover {
+    color: #250000;
+}
+
+.bg-oscuro {
+    background-color: darkred;
+}
+
+.bg-gris {
+    background-color: #f9f9f9;
+}
+
+.color-blanco {
+    color: white;
+}
+
+.color-blanco a {
+    color: white;
+}
+
+.not-found {
+    position: relative;
+    background-size: cover;
+    background-position: top;
+    height: 750px;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: darkred;
+}
+
+a:hover {
+    color: #250000;
+}
+
+.bg-oscuro {
+    background-color: darkred;
+}
+
+.bg-gris {
+    background-color: #f9f9f9;
+}
+
+.color-blanco {
+    color: white;
+}
+
+.color-blanco a {
+    color: white;
+}
+
+.banner {
+    position: relative;
+    background-size: cover;
+}
+
+* {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.5em;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+i {
+    font-style: normal;
+}
+
+i.bi::before {
+    margin-right: 5px;
+}
+
+h2 {
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+@media screen and (max-width: 576px) {
+    h2 {
+        font-size: 45px;
+    }
+}
+
+h3 {
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 1em;
+    color: darkred;
+    margin-top: 35px;
+}
+
+h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.s-pad {
+    padding-top: 80px;
+    padding-bottom: 60px;
+}
+
+@media screen and (max-width: 576px) {
+    .s-pad {
+        padding-top: 50px;
+        padding-bottom: 30px;
+    }
+}
+
+.s-unique {
+    min-height: 75vh;
+}
+
+.encabezado {
+    display: flex;
+    height: 400px;
+    align-items: end;
+    padding-bottom: 0;
+}
+
+.enc {
+    display: inline-block;
+    margin-bottom: 30px;
+    background: hsla(39, 98%, 59%, 0.7);
+    padding: 15px 25px;
+    backdrop-filter: blur(3px);
+}
+
+.centrar {
+    text-align: center;
+}
+
+.titulo {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 576px) {
+    .titulo {
+        margin-top: 0;
+    }
+}
+
+.lista li {
+    margin-bottom: 10px;
+}
+
+/* Botones */
+.boton {
+    font-family: "Montserrat", sans-serif;
+    background-color: darkred;
+    color: white;
+    border: 2px solid darkred;
+    border-radius: 50px;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 8px 28px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.boton:hover {
+    background-color: black;
+    border-color: black;
+}
+
+.boton.solo-bordes {
+    background-color: transparent;
+    color: darkred;
+    border: 2px solid darkred;
+}
+
+.boton.solo-bordes:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+
+.boton.enviar {
+    width: 100%;
+}
+
+a {
+    color: darkred;
+}
+
+a:hover {
+    color: #250000;
+}
+
+.bg-oscuro {
+    background-color: darkred;
+}
+
+.bg-gris {
+    background-color: #f9f9f9;
+}
+
+.color-blanco {
+    color: white;
+}
+
+.color-blanco a {
+    color: white;
+}
+
+/* Header */
+header {
+    background-color: white;
+    padding: 0 100px;
+}
+
+header nav div a .logo-header {
+    width: 50px;
+    margin-right: 5px;
+}
+
+header nav div a .titulo-header {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.15em;
+    color: black;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header nav div div .navbar .navbar-nav .nav-item {
+    font-size: 17px;
+    font-weight: 400;
+    margin: 0 8px;
+}
+
+header nav div div .navbar .navbar-nav .nav-item .nav-link:hover, header nav div div .navbar .navbar-nav .nav-item .nav-link.active:hover {
+    color: darkred;
+}
+
+header nav div div .navbar .navbar-nav .nav-item:last-child {
+    margin-right: 0;
+}
+
+/* HEADER RESPONSIVE */
+@media screen and (min-width: 992px) and (max-width: 1250px) {
+    .header {
+        padding: 0 30px;
+    }
+
+    .logo-header {
+        width: 40px;
+    }
+
+    .titulo-header {
+        font-size: 1.5rem;
+        line-height: 1.1em;
+    }
+
+    .nav-item {
+        font-size: 16px;
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .header {
+        padding: 0 1rem 0 1rem;
+    }
+
+    .logo-header {
+        width: 35px;
+    }
+
+    .titulo-header {
+        font-size: 1.375rem;
+        line-height: 1.1em;
+    }
+
+    .navbar {
+        justify-content: center;
+    }
+
+    .nav-item {
+        font-size: 1rem;
+        text-align: center;
+        margin: 0;
+    }
+}
+
+a {
+    color: darkred;
+}
+
+a:hover {
+    color: #250000;
+}
+
+.bg-oscuro {
+    background-color: darkred;
+}
+
+.bg-gris {
+    background-color: #f9f9f9;
+}
+
+.color-blanco {
+    color: white;
+}
+
+.color-blanco a {
+    color: white;
+}
+
+/* Footer */
+.footer {
+    background-color: #111111;
+    padding-top: 50px;
+}
+
+.footer .pie-pagina {
+    padding-bottom: 20px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.footer .pie-pagina a {
+    color: #cccccc;
+}
+
+.footer .pie-pagina div .col-logo {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.footer .pie-pagina div .col-logo .logo-footer {
+    width: 40px;
+    margin-right: 5px;
+}
+
+.footer .pie-pagina div .col-logo .titulo-footer {
+    font-size: 1.5rem;
+    color: #dbdbdb;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.15em;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.footer .pie-pagina .social-footer {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.footer .pie-pagina .social-footer .bi {
+    margin: 0 10px;
+}
+
+.footer .pie-pagina .item-lista {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer .atribuciones {
+    border-top: 1px solid #303030;
+    color: #aaaaaa;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+/* FOOTER RESPONSIVE */
+@media screen and (max-width: 991px) {
+    .col-logo {
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .col-footer {
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+
+    .logo-footer {
+        width: 33px;
+    }
+
+    .titulo-footer {
+        font-size: 1.25rem;
+    }
+
+    .footer h4 {
+        font-size: 1rem;
+    }
+
+    .item-lista {
+        font-size: 0.75rem;
+    }
+
+    .atribuciones {
+        font-size: 0.625rem;
+    }
+}
+
+a {
+    color: darkred;
+}
+
+a:hover {
+    color: #250000;
+}
+
+.bg-oscuro {
+    background-color: darkred;
+}
+
+.bg-gris {
+    background-color: #f9f9f9;
+}
+
+.color-blanco {
+    color: white;
+}
+
+.color-blanco a {
+    color: white;
+}
+
+.banner {
+    position: relative;
+    background-size: cover;
+}
+
+/* Banner */
+.banner {
+    background-image: url("../images/banner.jpg");
+    background-position: top;
+    height: 800px;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner .overlay-banner {
+    /* background-color: hsla(0, 100%, 15%, 0.87); */
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+}
+
+.banner .overlay-banner .estudia {
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+@media screen and (min-width: 577px) and (max-width: 991px) {
+    .banner .overlay-banner .estudia {
+        font-size: 25px;
+        letter-spacing: 8px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .banner .overlay-banner .estudia {
+        font-size: 20px;
+        letter-spacing: 6px;
+    }
+}
+
+/* Secciones */
+.niveles {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.niveles a {
+    text-decoration: none;
+}
+
+.niveles h2 {
+    padding-top: 20px;
+    padding-bottom: 18px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+@media screen and (max-width: 991px) {
+    .niveles h2 {
+        padding-top: 15px;
+        padding-bottom: 13px;
+        font-size: 14px;
+    }
+}
+
+.niveles .nivel {
+    text-align: center;
+    background-color: darkred;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.niveles .nivel .img-nivel {
+    overflow: hidden;
+}
+
+.niveles .nivel .img-nivel img {
+    transition: all 0.5s ease;
+}
+
+.niveles .nivel .img-nivel img:hover {
+    transform: scale(1.2);
+}
+
+@media screen and (max-width: 991px) {
+    .niveles {
+        max-width: 900px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Sección Misión Institucional */
+.mision {
+    display: grid;
+    align-content: center;
+}
+
+.mision h2 {
+    margin-bottom: 20px;
+}
+
+.mision p {
+    margin-bottom: 40px;
+}
+
+@media screen and (max-width: 991px) {
+    .mision p {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 991px) {
+    .mision {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .mision {
+        padding: 0 20px;
+        margin-bottom: 30px;
+    }
+}
+
+.mision-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 30px;
+    grid-template-areas: "rell tarj3" "tarj1 tarj3" "tarj1 tarj4" "tarj2 tarj4" "tarj2 rell2";
+    align-items: center;
+}
+
+.mision-grid .rell {
+    grid-area: rell;
+}
+
+.mision-grid .rell2 {
+    grid-area: rell2;
+}
+
+.mision-grid .tarj1 {
+    grid-area: tarj1;
+}
+
+.mision-grid .tarj2 {
+    grid-area: tarj2;
+}
+
+.mision-grid .tarj3 {
+    grid-area: tarj3;
+}
+
+.mision-grid .tarj4 {
+    grid-area: tarj4;
+}
+
+.mision-grid .tarjeta {
+    background-color: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    height: 100%;
+    padding: 30px;
+    display: grid;
+    align-content: center;
+    box-shadow: 0px 0px 50px -30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.mision-grid .tarjeta:hover {
+    background-color: white;
+    box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.3);
+}
+
+.mision-grid .tarjeta .mision-icon {
+    font-size: 40px;
+    color: darkred;
+    margin-bottom: -5px;
+}
+
+@media screen and (min-width: 577px) and (max-width: 991px) {
+    .mision-grid .tarjeta .mision-icon {
+        font-size: 40px;
+        margin-bottom: -5px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .mision-grid .tarjeta .mision-icon {
+        margin-bottom: -5px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .mision-grid .tarjeta {
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .mision-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 20px 0;
+        grid-template-areas: "tarj1" "tarj2" "tarj3" "tarj4";
+    }
+}
+
+.mapa {
+    height: auto;
+}
+
+@media screen and (max-width: 576px) {
+    .mapa {
+        height: 350px;
+    }
+}
+
+.form-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-index {
+    margin: 50px 0 20px 0;
+    padding-left: 100px;
+    padding-right: 100px;
+    box-shadow: 0px 0px 50px -15px rgba(0, 0, 0, 0.3);
+}
+
+.form-index .form-titulo {
+    font-size: 2.8rem;
+}
+
+.form-index .form-subtitulo-top {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.form-index .form-subtitulo-bot {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.form-index form {
+    margin-top: 10px;
+}
+
+.form-index form .boton.enviar {
+    /* background-color: $negro;
+    color: $blanco;
+    border: 2px solid $negro; */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* &:hover {
+        background-color: $blanco;
+        color: $principal;
+        border-color: $blanco;
+    } */
+}
+
+@media screen and (min-width: 577px) and (max-width: 991px) {
+    .form-index {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .form-index {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+.tabs-reportes {
+    padding: 20px 0 10px 0;
+}
+
+.tabs-reportes .nav-link {
+    color: rgb(63, 63, 63);
+}
+
+.tabs-reportes .nav-link:hover {
+    color: darkred;
+}
+
+.report-button {
+    margin-top: 20px;
+    float: right;
+}
+
+/*# sourceMappingURL=style.css.map */

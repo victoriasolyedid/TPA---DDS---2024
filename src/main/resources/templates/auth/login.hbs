@@ -1,0 +1,46 @@
+{{#partial "contenido"}}
+<section class='container s-pad form-flex'>
+	{{#if success}}
+		<div class='success'>
+			<p>La contraseña ha sido restaurada con éxito. Por favor, vuelva a iniciar sesión.</p>
+		</div>
+	{{/if}}
+    {{#if registrado}}
+        <div class='alert alert-success' role='alert'>
+            Registro exitoso, ya puede iniciar sesión!
+        </div>
+    {{/if}}
+	{{#if emailsend}}
+		<div class='email-send'>
+			<p>Se ha enviado a su email el link de restauración de contraseña.</p>
+		</div>
+	{{/if}}
+
+	<div class="form-index s-pad col-8">
+		<h2 class="form-titulo">Inicio de sesión</h2>
+        <!-- id='loginForm' -->
+		<form method='POST' action="/login"  class="row g-3" role="form">
+			<div class='col-md-12'>
+				<input type='Usuario' name='usuario' class='form-control' id='inputUser' aria-describedby='emailHelp' placeholder="Usuario" />
+			</div>
+			<div class='col-md-12'>
+				<input type='password' name='contrasenia' class='form-control' id='inputPassword' placeholder="Password" />
+			</div>
+            {{#if error}}
+                <div class='alert alert-danger' role='alert'>
+                    {{error}}
+                </div>
+            {{/if}}
+			<div class="col-md-12">
+				<button type='submit' class='boton enviar'>Ingresar</button>
+			</div>
+		</form>
+
+		<p class="">¿No estás registrado? <a href='/register'>Regístrate aquí</a></p>
+		<p class=""><a href='/forgot-password'>¿Olvidó su contraseña?</a></p>
+	</div>
+
+
+</section>
+{{/partial}}
+{{> layouts/main }}

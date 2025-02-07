@@ -1,0 +1,20 @@
+{{#partial "contenido"}}
+    <div class="list-group container s-pad">
+        <h3 class="text-center">Mis Colaboraciones</h3>
+
+        {{#if colaboraciones}}
+            {{#each colaboraciones}}
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">{{getNombreColab}}</h4>
+                    </div>
+                    <p class="mb-1">Fecha: {{fechaColaboracion}}</p>
+                    <p class="mb-1">Id: {{id}}</p>
+                </a>
+            {{/each}}
+        {{else}}
+            <p class="text-center">No hay colaboraciones registradas.</p>
+        {{/if}}
+    </div>
+{{/partial}}
+{{> layouts/main }}

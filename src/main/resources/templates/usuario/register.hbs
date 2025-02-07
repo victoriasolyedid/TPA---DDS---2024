@@ -1,0 +1,72 @@
+{{#partial "contenido"}}
+    <section class='container s-pad form-flex s-unique'>
+        <div class='form-index s-pad col-8'>
+            <p class='form-subtitulo-top'>¿Aún no tenés un usuario?</p>
+            <h2 class='form-titulo'>Registrate</h2>
+
+            {{#if error}}
+                <div class='alert alert-danger' role='alert'>
+                    {{error}}
+                </div>
+            {{/if}}
+
+            <form id='registerForm' method='POST' action="/register" class="row g-3" role="form">
+                <div class='col-md-6'>
+                    <input
+                            type='text'
+                            class='form-control'
+                            name='usuario'
+                            id='usuario'
+                            placeholder='Usuario'
+                    />
+                </div>
+                <div class='col-md-6'>
+                    <input
+                            type='password'
+                            class='form-control'
+                            name='password'
+                            id='password'
+                            placeholder='Password'
+                    />
+                </div>
+                <div class='col-md-7'>
+                    <input
+                            type='email'
+                            class='form-control'
+                            name='email'
+                            id='email'
+                            placeholder='Email'
+                    />
+                </div>
+                <div class='col-md-5'>
+                    <select name="tipo_usuario" id="tipo_usuario" class='form-select' onchange='mostrarCampos()'>
+                        <option selected>Tipo de colaborador</option>
+                        <option value='humana'>Persona humana</option>
+                        <option value='juridica'>Persona jurídica</option>
+                    </select>
+                </div>
+
+                <div id='alta-personaHum-fields-hum' class='row g-3' style='display: none;'>
+                    {{#each camposHumana}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+
+                <div id='alta-personaJur-fields-jur' class='row g-3' style='display: none;'>
+                    {{#each camposJuridica}}
+                        {{{this}}}
+                    {{/each}}
+                </div>
+
+                <div class='col-md-12'>
+                    <button type='submit' class='boton enviar'>Enviar</button>
+                </div>
+            </form>
+
+            <p>¿Ya tienes una cuenta? <a href='/login'>Ingresa aquí</a></p>
+        </div>
+    </section>
+    <script src='js/register.js'></script>
+    <script src='js/localidades.js'></script>
+{{/partial}}
+{{> layouts/main }}

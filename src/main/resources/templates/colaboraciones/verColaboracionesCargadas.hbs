@@ -1,0 +1,27 @@
+{{#partial "contenido"}}
+    <div class="list-group container s-pad">
+        <h3 class="text-center">Colaboraciones Importadas</h3>
+
+        <!--
+        Se podría mostrar:
+        - Tipo Colaboracion (Ej: Donacion de Dinero)
+        - Colaborador: Nombre
+        - Fecha: fecha
+         -->
+
+        <!--{{#if colaboraciones}}
+            {{#each colaboraciones}}
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">{{getNombreColab}}</h4>
+                    </div>
+                    <p class="mb-1">Fecha: {{fechaColaboracion}}</p>
+                    <p class="mb-1">Fecha: {{id}}</p>
+                </a>
+            {{/each}}
+        {{else}}
+            <p class="text-center">No hay colaboraciones cargadas.</p>
+        {{/if}}-->
+    </div>
+{{/partial}}
+{{> layouts/main }}

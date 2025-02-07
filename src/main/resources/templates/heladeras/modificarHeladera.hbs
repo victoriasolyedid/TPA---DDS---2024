@@ -1,0 +1,95 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        <div class="row mb-3">
+            <div class="col text-center">
+                <h3>Modificar Heladera</h3>
+            </div>
+        </div>
+
+        <form class="row g-3" method="POST" action="/modificar-heladera/{{heladera.id}}">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="calle" class="form-label">Calle</label>
+                    <input name="calle" type="text" class="form-control" id="calle" placeholder="Calle"
+                           value="{{heladera.calle}}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="altura" class="form-label">Altura</label>
+                    <input name="altura" type="text" class="form-control" id="altura" placeholder="Altura"
+                           value="{{heladera.altura}}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Heladera</label>
+                    <select name="nombre" class="form-select" id="nombre">
+                        <option value="" disabled selected>Seleccionar Heladera</option>
+                        {{#each heladeras}}
+                            <option value="{{this.id}}"
+                                    {{#if this.id ../heladera.id}}selected{{/if}}>{{this.nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="provincia" class="form-label">Provincia</label>
+                    <select name="provincia" class="form-select" id="provincia" onchange="cargarLocalidades(event)">
+                        <option value="" disabled selected>Seleccionar Provincia</option>
+                        <option value="06">Buenos Aires</option>
+                        <option value="10">Catamarca</option>
+                        <option value="22">Chaco</option>
+                        <option value="26">Chubut</option>
+                        <option value="02">Ciudad Autónoma de Buenos Aires</option>
+                        <option value="14">Córdoba</option>
+                        <option value="18">Corrientes</option>
+                        <option value="30">Entre Ríos</option>
+                        <option value="34">Formosa</option>
+                        <option value="38">Jujuy</option>
+                        <option value="42">La Pampa</option>
+                        <option value="46">La Rioja</option>
+                        <option value="50">Mendoza</option>
+                        <option value="54">Misiones</option>
+                        <option value="58">Neuquén</option>
+                        <option value="62">Río Negro</option>
+                        <option value="66">Salta</option>
+                        <option value="70">San Juan</option>
+                        <option value="74">San Luis</option>
+                        <option value="78">Santa Cruz</option>
+                        <option value="82">Santa Fe</option>
+                        <option value="86">Santiago del Estero</option>
+                        <option value="94">Tierra del Fuego</option>
+                        <option value="90">Tucumán</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="localidad" class="form-label">Localidad</label>
+                    <select name="localidad" class="form-select" id="localidad">
+                        <option value="" disabled selected>Seleccionar Localidad</option>
+                        <!-- Aquí se llenarán las localidades desde la API -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Botón Eliminar -->
+        <form method="POST" action="/eliminar-heladera/{{heladera.id}}" class="mt-3">
+            <input type="hidden" name="heladeraId" value="{{heladera.id}}">
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/localidades.js"></script>
+{{/partial}}
+{{> layouts/main }}

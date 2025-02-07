@@ -1,0 +1,79 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        {{#if incidenteCreado}}
+            <div class="d-flex justify-content-center">
+                <div class='alert alert-success' role='alert' style="max-width: 50%;">
+                    El incidente fue creado con éxito!
+                </div>
+            </div>
+        {{/if}}
+        <div class="col text-center">
+            <h3>Reporte de Fallas</h3>
+        </div>
+        <div class="row">
+            <!-- Columna para el formulario -->
+            <div class="col-md-6">
+                <form action="/reportar-falla" method="POST">
+                    <div class="mb-3">
+                        <label for="inputActualDate" class="form-label">Fecha</label>
+                        <input name="fecha" type="date" class="form-control" id="inputActualDate"
+                               value= {{currentDate}}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="timepicker" class="form-label">Hora</label>
+                        <input name="hora" type="time" class="form-control" id="timepicker">
+                    </div>
+                    <div class="mb-3">
+                        <label for="heladera" class="form-label">Heladera</label>
+                        <select name="heladera" class="form-select" id="heladera" aria-label="Seleccionar Heladera">
+                            <option selected>Seleccionar Heladera</option>
+                            {{#each heladeras}}
+                                <option value="{{id}}">{{nombre}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input name="descripcion" type="text" class="form-control" id="descripcion"
+                               placeholder="Descripción">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Insertar foto</label>
+                        <input name="foto" class="form-control" type="file" id="formFile" aria-label="Examinar">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Columna para el mapa -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+
+    <!-- Scripts para tener la hora y la fecha actual en el formulario -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('inputActualDate').value = today;
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('inputActualDate').value = today;
+
+            const now = new Date().toTimeString().split(' ')[0].substring(0, 5);
+            document.getElementById('timepicker').value = now;
+        });
+    </script>
+
+{{/partial}}
+{{> layouts/main }}

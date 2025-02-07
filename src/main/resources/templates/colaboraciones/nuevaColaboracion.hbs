@@ -1,0 +1,577 @@
+{{#partial "contenido"}}
+    <section class='container s-pad'>
+        <h3>Formulario de colaboración</h3>
+        {{#if (eq role 'HUMANA')}}
+            <form id='nuevaColabFormHumana' method='POST' action="/nueva-colaboracion" role="form">
+                <!-- CAMPOS PERSONA HUMANA -->
+                <div class='row g-3'>
+                    <div class='col-md-4'>
+                        <label for='nombre' class='form-label'>Nombre</label>
+                        <input
+                                name="nombre"
+                                type='text'
+                                class='form-control'
+                                id='nombre'
+                                value="{{datosColab.camposCompletos.nombre}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='apellido' class='form-label'>Apellido</label>
+                        <input
+                                name="apellido"
+                                type='text'
+                                class='form-control'
+                                id='apellido'
+                                value="{{datosColab.camposCompletos.apellido}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='fecha_nacimiento' class='form-label'>Fecha de nacimiento</label>
+                        <input
+                                name="fecha_nacimiento"
+                                type='date'
+                                class='form-control'
+                                id='fecha_nacimiento'
+                                value="{{datosColab.camposCompletos.fecha_nacimiento}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='email' class='form-label'>Email</label>
+                        <input
+                                name="email"
+                                type='email'
+                                class='form-control'
+                                id='email'
+                                value="{{colaborador.mail}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='whatsapp' class='form-label'>WhatsApp</label>
+                        <input
+                                name="whatsapp"
+                                type='text'
+                                class='form-control'
+                                id='whatsapp'
+                                value="{{datosColab.camposCompletos.whatsapp}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='telefono' class='form-label'>Teléfono</label>
+                        <input
+                                name="telefono"
+                                type='text'
+                                class='form-control'
+                                id='telefono'
+                                value="{{datosColab.camposCompletos.telefono}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='calle' class='form-label'>Calle</label>
+                        <input
+                                name="calle"
+                                type='text'
+                                class='form-control'
+                                id='calle'
+                                value="{{datosColab.camposCompletos.calle}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='altura' class='form-label'>Altura</label>
+                        <input
+                                name="altura"
+                                type='number'
+                                class='form-control'
+                                id='altura'
+                                value="{{datosColab.camposCompletos.altura}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='provincia' class='form-label'>Provincia</label>
+                        <input
+                                name="provincia"
+                                type='text'
+                                class='form-control'
+                                id='provincia'
+                                value="{{datosColab.camposCompletos.provincia}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='localidad' class='form-label'>Localidad</label>
+                        <input
+                                name="localidad"
+                                type='text'
+                                class='form-control'
+                                id='localidad'
+                                value="{{datosColab.camposCompletos.localidad}}"
+                                readonly
+                        />
+                    </div>
+
+                    <div class='col-md-4'>
+                        <label for='tipo_colab' class='form-label'>Tipo de colaboración</label>
+                        <select id='tipo_colab' class='form-select' name="tipo_colab"
+                                onchange='mostrarCamposHumana()'>
+                            <option selected>Tipo de colaboración</option>
+                            <option value='donacion-dinero'>Donación de dinero</option>
+                            <option value='donacion-vianda'>Donación de vianda</option>
+                            <option value='distribucion-viandas'>Distribución de viandas</option>
+                            <option value='alta-persona'>Alta persona en situación vulnerable</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- DONACION DE DINERO -->
+                <div class="row g-3" id='donacionDineroFieldsHum' style='display: none;'>
+                    <div class='col-6'>
+                        <label for='monto_donacion' class='form-label'>Monto</label>
+                        <!-- Si se ingresa como "$1000" en vez de "1000" se rompe cuando crea la colab -->
+                        <input name="monto" type='number' class='form-control' id='monto_donacion'
+                               placeholder='Ej: 500'/>
+                    </div>
+                    <div class='form-check'>
+                        <input name='periodica' class='form-check-input' type='checkbox' value='true'
+                               id='periodica_donacion' onchange='toggleFrecuenciaHum()'/>
+                        <label class='form-check-label' for='periodica_donacion'>Donar periódicamente</label>
+                    </div>
+                    <div class='col-6'>
+                        <label for='frecuencia_donacion' class='form-label'>Frecuencia</label>
+                        <input name="frecuencia" type='text' class='form-control' id='frecuencia_donacion'
+                               placeholder='Ej: 2 veces por semana'/>
+                    </div>
+                </div>
+
+                <div class="row g-3" id='donacionViandaFieldsHum' style='display: none;'>
+                    <!-- DONACION DE VIANDA -->
+                    <div class='col-6'>
+                        <label for='comida_donacion' class='form-label'>Nombre de la comida</label>
+                        <input name="nombre_comida" type='text' class='form-control' id='comida_donacion'
+                               placeholder='Ej: Milanesa con puré'/>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='vto_comida_donacion' class='form-label'>Fecha de caducidad</label>
+                        <input name="vto_comida" type='date' class='form-control'
+                               id='vto_comida_donacion'/>
+                    </div>
+                    <div class='col-6'>
+                        <label for='comida_heladera_donacion' class='form-label'>Heladera</label>
+                        <input name="heladera" type='text' class='form-control'
+                               id='comida_heladera_donacion'
+                               placeholder='Ej: Heladera re copada'/>
+                    </div>
+                    <div class='form-check'>
+                        <input name="entregada" class='form-check-input' type='checkbox' value=''
+                               id='comida_entregada_donacion'/>
+                        <label class='form-check-label' for='comida_entregada_donacion'>Entregado</label>
+                    </div>
+                </div>
+
+                <div class="row g-3" id='distribucionViandasFieldsHum' style='display: none;'>
+                    <!-- DISTRIBUCION DE VIANDAS -->
+                    <div class='col-6'>
+                        <label for='distribucion_heladera_origen' class='form-label'>Heladera Origen</label>
+                        <input name="heladera_origen" type='text' class='form-control'
+                               id='distribucion_heladera_origen'
+                               placeholder='Ej: Heladera Mozart'/>
+                    </div>
+                    <div class='col-6'>
+                        <label for='distribucion_heladera_destino' class='form-label'>Heladera Destino</label>
+                        <input name="heladera_destino" type='text' class='form-control'
+                               id='distribucion_heladera_destino'
+                               placeholder='Ej: Heladera Medrano'/>
+                    </div>
+                    <div class='col-6'>
+                        <label for='cantidad_distribucion' class='form-label'>Cantidad de viandas</label>
+                        <input name="cantidad" type='number' class='form-control'
+                               id='cantidad_distribucion'
+                               placeholder='Ej: 10'/>
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='motivo_distribucion' class='form-label'>Motivo</label>
+                        <select name="motivo" id='motivo_distribucion' class='form-select'>
+                            <option selected>Motivo</option>
+                            <option value="DESPERFECTO_HELADERA">Desperfecto en heladera</option>
+                            <option value="FALTA_DE_VIANDAS">Falta de viandas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-3" id='altaPersonaFieldsHum' style='display: none;'>
+                    <!-- ALTA PERSONA EN SIT. VULNERABLE -->
+                    <div class='col-6'>
+                        <label for='nombre_vulnerable' class='form-label'>Nombre</label>
+                        <input name="nombre" type='text' class='form-control' id='nombre_vulnerable'
+                               placeholder='Ej: Pedro'/>
+                    </div>
+                    <div class='col-6'>
+                        <label for='apellido_vulnerable' class='form-label'>Apellido</label>
+                        <input name="apellido" type='text' class='form-control'
+                               id='apellido_vulnerable'
+                               placeholder='Ej: Pérez'/>
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='tipo_doc_vulnerable' class='form-label'>Tipo de documento</label>
+                        <select name="tipo_doc" id='tipo_doc_vulnerable' class='form-select'>
+                            <option selected>Tipo de documento</option>
+                            <option>DNI</option>
+                            <option>Libreta cívica</option>
+                            <option>Libreta de enrolamiento</option>
+                        </select>
+                        <div class='col-6'>
+                            <label for='num_doc_vulnerable' class='form-label'>Nro. documento</label>
+                            <input name="num_doc" type='text' class='form-control'
+                                   id='num_doc_vulnerable'
+                                   placeholder='Ej: 44123123'/>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='fecha_registro_vulnerable' class='form-label'>Fecha de registro</label>
+                        <input name="fecha_registro" type='date' class='form-control'
+                               id='fecha_registro_vulnerable'/>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='fecha_nacimiento_vulnerable' class='form-label'>Fecha de nacimiento</label>
+                        <input name="fecha_nacimiento" type='date' class='form-control'
+                               id='fecha_nacimiento_vulnerable'/>
+                    </div>
+                    <div class='form-check'>
+                        <label class='form-check-label' for='posee_dom_vulnerable'>Posee domicilio</label>
+                        <input class='form-check-input' type='checkbox' name='posee_dom' value='true'
+                               id='posee_dom_vulnerable'/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="calle_vulnerable" class="form-label">Calle</label>
+                        <input name="calle_vulnerable" type="text" class="form-control" id="calle_vulnerable"
+                               placeholder="Calle">
+                    </div>
+                    <div class="mb-3">
+                        <label for="altura_vulnerable" class="form-label">Altura</label>
+                        <input name="altura_vulnerable" type="text" class="form-control" id="altura_vulnerable"
+                               placeholder="Altura">
+                    </div>
+                    <div class="mb-3">
+                        <label for="provincia_vulnerable" class="form-label">Provincia</label>
+                        <select name="provincia_vulnerable" class="form-select" id="provincia_vulnerable"
+                                aria-label="Seleccionar Provincia"
+                                onchange="cargarLocalidades(event)">
+                            <option selected>Seleccionar Provincia</option>
+                            <option value="06">Buenos Aires</option>
+                            <option value="10">Catamarca</option>
+                            <option value="22">Chaco</option>
+                            <option value="26">Chubut</option>
+                            <option value="02">Ciudad Autónoma de Buenos Aires</option>
+                            <option value="14">Córdoba</option>
+                            <option value="18">Corrientes</option>
+                            <option value="30">Entre Ríos</option>
+                            <option value="34">Formosa</option>
+                            <option value="38">Jujuy</option>
+                            <option value="42">La Pampa</option>
+                            <option value="46">La Rioja</option>
+                            <option value="50">Mendoza</option>
+                            <option value="54">Misiones</option>
+                            <option value="58">Neuquén</option>
+                            <option value="62">Río Negro</option>
+                            <option value="66">Salta</option>
+                            <option value="70">San Juan</option>
+                            <option value="74">San Luis</option>
+                            <option value="78">Santa Cruz</option>
+                            <option value="82">Santa Fe</option>
+                            <option value="86">Santiago del Estero</option>
+                            <option value="94">Tierra del Fuego</option>
+                            <option value="90">Tucumán</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="localidad_vulnerable" class="form-label">Localidad</label>
+                        <select name="localidad_vulnerable" id="localidad_vulnerable" class="form-select"
+                                aria-label="Seleccionar Localidad">
+                            <option selected>Seleccionar Localidad</option>
+                        </select>
+                    </div>
+                    <div class='form-check'>
+                        <label class='form-check-label' for='menores_vulnerable'>Posee menores a cargo</label>
+                        <input class='form-check-input' type='checkbox' name='posee_menores' value='true'
+                               id='menores_vulnerable'/>
+                    </div>
+                    <div class='col-6'>
+                        <label for='cant_menores_vulnerable' class='form-label'>Cantidad de menores</label>
+                        <input name="cant_menores" type='text' class='form-control'
+                               id='cant_menores_vulnerable'
+                               placeholder='Ej: 3'/>
+                    </div>
+                </div>
+                <div class='col-md-12 mt-4'>
+                    <button type='submit' class='boton enviar'>Realizar colaboración</button>
+                </div>
+            </form>
+        {{/if}}
+
+        {{#if (eq role 'JURIDICA')}}
+            <form id='nuevaColabFormJuridica' method='POST' action="/nueva-colaboracion" role="form">
+                <!-- CAMPOS PERSONA JURÍDICA -->
+                <div class='row g-3'>
+                    <div class='col-md-6'>
+                        <label for='razon_social' class='form-label'>Razón Social</label>
+                        <input
+                                name="razonSocial"
+                                type='text'
+                                class='form-control'
+                                id='razon_social'
+                                value="{{datosColab.camposCompletos.razon_social}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='rubro' class='form-label'>Rubro</label>
+                        <input
+                                name="rubro"
+                                type='text'
+                                class='form-control'
+                                id='rubro'
+                                value="{{datosColab.camposCompletos.rubro}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='tipo_entidad' class='form-label'>Tipo</label>
+                        <select id='tipo_entidad' class='form-select' disabled>
+                            <option value="">Tipo</option>
+                            <option value="Gubernamental"
+                                    {{#if (eq datosColab.camposCompletos.tipo_empresa "Gubernamental")}}selected{{/if}}>
+                                Gubernamental
+                            </option>
+                            <option value="ONG"
+                                    {{#if (eq datosColab.camposCompletos.tipo_empresa "ONG")}}selected{{/if}}>
+                                ONG
+                            </option>
+                            <option value="Empresa"
+                                    {{#if (eq datosColab.camposCompletos.tipo_empresa "Empresa")}}selected{{/if}}>
+                                Empresa
+                            </option>
+                            <option value="Institución"
+                                    {{#if (eq datosColab.camposCompletos.tipo_empresa "Institución")}}selected{{/if}}>
+                                Institución
+                            </option>
+                        </select>
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='email_jur' class='form-label'>Email</label>
+                        <input
+                                name="email_jur"
+                                type='email'
+                                class='form-control'
+                                id='email_jur'
+                                value="{{colaborador.mail}}"
+                                readonly
+                        />
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='whatsapp_jur' class='form-label'>WhatsApp</label>
+                        <input name="whatsapp_jur" type='text' class='form-control' id='whatsapp_jur'
+                               value="{{datosColab.camposCompletos.whatsapp_jur}}" readonly/>
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='telefono_jur' class='form-label'>Teléfono</label>
+                        <input name="telefono_jur" type='text' class='form-control' id='telefono_jur'
+                               value="{{datosColab.camposCompletos.telefono_jur}}" readonly/>
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='calle_jur' class='form-label'>Calle</label>
+                        <input name="calle_jur" type='text' class='form-control' id='calle_jur'
+                               value="{{datosColab.camposCompletos.calle_jur}}" readonly/>
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='altura_jur' class='form-label'>Altura</label>
+                        <input name="altura_jur" type='number' class='form-control' id='altura_jur'
+                               value="{{datosColab.camposCompletos.altura_jur}}" readonly/>
+                    </div>
+                    <!-- TODO: Hacer que salga localidad y provincia en lugar de sus códigos -->
+                    <div class='col-md-3'>
+                        <label for='localidad_jur' class='form-label'>Localidad</label>
+                        <input name="localidad_jur" type='text' class='form-control' id='localidad_jur'
+                               value="{{datosColab.camposCompletos.localidad_jur}}" readonly/>
+                    </div>
+                    <div class='col-md-3'>
+                        <label for='provincia_jur' class='form-label'>Provincia</label>
+                        <input name="provincia_jur" type='text' class='form-control' id='provincia_jur'
+                               value="{{datosColab.camposCompletos.provincia_jur}}" readonly/>
+                    </div>
+                    <div class='col-md-4'>
+                        <label for='tipo_colab' class='form-label'>Tipo de colaboración</label>
+                        <select id='tipo_colab' class='form-select' name="tipo_colab"
+                                onchange='mostrarCamposJuridica()'>
+                            <option selected>Tipo de colaboración</option>
+                            <option value='donacion-dinero'>Donación de dinero</option>
+                            <option value='hacerse-cargo-heladera'>Hacerse cargo de una heladera</option>
+                        </select>
+                    </div>
+
+                    <!-- DONACION DE DINERO -->
+                    <div class='col-md-4' id="donacionDineroFieldJur" style='display: none;'>
+                        <label for='monto_donacion_jur' class='form-label'>Monto</label>
+                        <input name="monto" type='text' class='form-control' id='monto_donacion_jur'
+                               placeholder='Ej: $500'/>
+                        <div class='form-check align-content-center'>
+                            <label class='form-check-label' for='periodica_donacion_jur'>Donar periódicamente</label>
+                            <input class='form-check-input' type='checkbox' name="periodica" value='' id='periodica_donacion_jur'
+                                   onchange='toggleFrecuenciaJur()'/>
+                        </div>
+                    </div>
+                    <div class='col-md-4' id="donacionDineroFieldJur2" style='display: none;'>
+                        <label for='frecuencia_donacion_jur' class='form-label'>Frecuencia</label>
+                        <input name="frecuencia" type='text' class='form-control'
+                               id='frecuencia_donacion_jur'
+                               placeholder='Ej: 2 veces por semana' disabled/>
+                    </div>
+                </div>
+
+                <!-- HACERSE CARGO DE UNA HELADERA -->
+                <div class="row g-3 mt-1" id='hacerseCargoHeladeraFieldsJur' style='display: none;'>
+                    <div class="col-md-3">
+                        <label for="calle_heladera" class="form-label">Calle</label>
+                        <input name="calle_heladera" type="text" class="form-control" id="calle_heladera"
+                               placeholder="Calle">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="altura_heladera" class="form-label">Altura</label>
+                        <input name="altura_heladera" type="text" class="form-control" id="altura_heladera"
+                               placeholder="Altura">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="provincia_heladera" class="form-label">Provincia</label>
+                        <select class="form-select" name="provincia_heladera" id="provincia_heladera" aria-label="Seleccionar Provincia"
+                                onchange="cargarLocalidades(event)">
+                            <option selected>Seleccionar Provincia</option>
+                            <option value="06">Buenos Aires</option>
+                            <option value="10">Catamarca</option>
+                            <option value="22">Chaco</option>
+                            <option value="26">Chubut</option>
+                            <option value="02">Ciudad Autónoma de Buenos Aires</option>
+                            <option value="14">Córdoba</option>
+                            <option value="18">Corrientes</option>
+                            <option value="30">Entre Ríos</option>
+                            <option value="34">Formosa</option>
+                            <option value="38">Jujuy</option>
+                            <option value="42">La Pampa</option>
+                            <option value="46">La Rioja</option>
+                            <option value="50">Mendoza</option>
+                            <option value="54">Misiones</option>
+                            <option value="58">Neuquén</option>
+                            <option value="62">Río Negro</option>
+                            <option value="66">Salta</option>
+                            <option value="70">San Juan</option>
+                            <option value="74">San Luis</option>
+                            <option value="78">Santa Cruz</option>
+                            <option value="82">Santa Fe</option>
+                            <option value="86">Santiago del Estero</option>
+                            <option value="94">Tierra del Fuego</option>
+                            <option value="90">Tucumán</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="localidad_heladera" class="form-label">Localidad</label>
+                        <select class="form-select" name="localidad_heladera" id="localidad_heladera" aria-label="Seleccionar Localidad"
+                                onchange="marcarUbicacion()">
+                            <option selected>Seleccionar Localidad</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="fecha_funcionamiento_heladera" class="form-label">Fecha de Inicio de
+                            Funcionamiento</label>
+                        <input name="fecha_funcionamiento_heladera" type="date" class="form-control"
+                               id="fecha_funcionamiento_heladera">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="nombre_heladera" class="form-label">Nombre</label>
+                        <input name="nombre_heladera" type="text" class="form-control"
+                               id="nombre_heladera"
+                               placeholder="Heladera Medrano">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="capacidad_heladera" class="form-label">Capacidad</label>
+                        <input name="capacidad_heladera" type="text" class="form-control"
+                               id="capacidad_heladera"
+                               placeholder="Viandas">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="modelo_heladera" class="form-label">Modelo</label>
+                        <select name="modelo_heladera" id="modelo_heladera" class="form-select">
+                            <option selected>Modelo</option>
+                            {{#each modelosHeladera}}
+                                <option value="{{this.nombre}}">{{this.nombre}} |
+                                    Min: {{this.temperaturaMinima}}°C
+                                    - Max: {{this.temperaturaMaxima}}°C
+                                </option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class='col-md-12 mt-4'>
+                    <button type='submit' class='boton enviar'>Realizar colaboración</button>
+                </div>
+            </form>
+        {{/if}}
+
+    </section>
+    <script>
+        const tipoPersona = "{{role}}";
+    </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src='js/formsColaboraciones.js'></script>
+    <script src='js/localidades-colabs.js'></script>
+    <script>
+        function toggleFrecuenciaHum() {
+            var checkbox = document.getElementById('periodica_donacion');
+            var frecuenciaInput = document.getElementById('frecuencia_donacion');
+            if (checkbox.checked) {
+                frecuenciaInput.disabled = false;
+            } else {
+                frecuenciaInput.disabled = true;
+                frecuenciaInput.value = '';
+            }
+        }
+    </script>
+    <script>
+        function toggleFrecuenciaJur() {
+            var checkbox = document.getElementById('periodica_donacion_jur');
+            var frecuenciaInput = document.getElementById('frecuencia_donacion_jur');
+            if (checkbox.checked) {
+                frecuenciaInput.disabled = false;
+            } else {
+                frecuenciaInput.disabled = true;
+                frecuenciaInput.value = '';
+            }
+        }
+    </script>
+    <script>
+        function togglePoseeDomicilio() {
+            var checkbox = document.getElementById('posee_dom_vulnerable');
+            var calleInput = document.getElementById('calle_vulnerable');
+            var alturaInput = document.getElementById('altura_vulnerable');
+            var provinciaInput = document.getElementById('provincia_vulnerable');
+            var localidadInput = document.getElementById('localidad_vulnerable');
+            if (checkbox.checked) {
+                calleInput.disabled = false;
+                alturaInput.disabled = false;
+                provinciaInput.disabled = false;
+                localidadInput.disabled = false;
+            } else {
+                calleInput.disabled = true;
+                alturaInput.disabled = true;
+                provinciaInput.disabled = true;
+                localidadInput.disabled = true;
+                calleInput.value = '';
+                alturaInput.value = '';
+            }
+        }
+    </script>
+{{/partial}}
+{{> layouts/main }}

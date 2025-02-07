@@ -1,0 +1,32 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        <h3 class="text-center">Alertas</h3>
+        <div class="row">
+            <!-- Columna para las alertas -->
+            <div class="col-md-6 d-flex flex-column">
+                <div class="alert-container flex-grow-1 overflow-auto">
+                    {{#each alertas}}
+                        <div class="card border-danger mb-3">
+                            <div class="card-header">{{this.tipoIncidente}}</div>
+                            <div class="card-body text-danger">
+                                <h5 class="card-title">{{this.fecha}}</h5>
+                                <p class="card-text">{{this.descripcion}}</p>
+                            </div>
+                        </div>
+                    {{else}}
+                        <p>No hay alertas disponibles.</p>
+                    {{/each}}
+                </div>
+            </div>
+
+            <!-- Columna para el mapa -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+{{/partial}}
+{{> layouts/main }}

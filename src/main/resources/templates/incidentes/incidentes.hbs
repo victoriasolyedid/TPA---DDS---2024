@@ -1,0 +1,58 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        {{#if incidenteResuelto}}
+            <div class="d-flex justify-content-center">
+                <div class='alert alert-success' role='alert' style="max-width: 50%;">
+                    El incidente fue resuelto con éxito!
+                </div>
+            </div>
+        {{/if}}
+        <div class="col text-center">
+            <h3>Reportar Incidente Solucionado</h3>
+        </div>
+        <div class="row">
+            <!-- Columna para el formulario -->
+            <div class="col-md-6">
+                <form action="/gestionar-incidente" method="POST">
+                    <div class="mb-3">
+                        <label for="inputActualDate" class="form-label">Fecha</label>
+                        <input name="fecha" type="date" class="form-control" id="inputActualDate"
+                               value= {{currentDate}}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="trabajoRealizado" class="form-label">Trabajo Realizado</label>
+                        <select name="trabajoRealizado" class="form-select" id="trabajoRealizado"
+                                aria-label="Seleccionar Trabajo Realizado">
+                            <option selected>Seleccionar Trabajo Realizado</option>
+                            {{#each trabajosPendientes}}
+                                <option value="{{id}}">{{heladera.nombre}}: {{this.descripcion}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Insertar foto</label>
+                        <input name="foto" class="form-control" type="file" id="formFile" aria-label="Examinar">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            <!-- Columna para el mapa -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('inputActualDate').value = new Date().toISOString().split('T')[0];
+        });
+    </script>
+
+{{/partial}}
+{{> layouts/main }}

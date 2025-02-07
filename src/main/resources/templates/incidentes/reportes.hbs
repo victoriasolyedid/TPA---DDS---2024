@@ -1,0 +1,219 @@
+{{#partial "contenido"}}
+    <section class='container d-flex flex-column s-pad'>
+        <div class=''>
+            <h3 class='text-center'>Reportes</h3>
+        </div>
+
+        <nav class="tabs-reportes">
+            <div class='nav nav-underline nav-fill' id='nav-tab' role='tablist'>
+                <button
+                        class='nav-link active'
+                        id='nav-fallas-tab'
+                        data-bs-toggle='tab'
+                        data-bs-target='#nav-fallas'
+                        type='button'
+                        role='tab'
+                        aria-controls='nav-fallas'
+                        aria-selected='true'
+                >Fallas por heladera
+                </button>
+                <button
+                        class='nav-link'
+                        id='nav-movimiento-tab'
+                        data-bs-toggle='tab'
+                        data-bs-target='#nav-movimiento'
+                        type='button'
+                        role='tab'
+                        aria-controls='nav-movimiento'
+                        aria-selected='false'
+                >Viandas retiradas/colocadas por heladera
+                </button>
+                <button
+                        class='nav-link'
+                        id='nav-donaciones-tab'
+                        data-bs-toggle='tab'
+                        data-bs-target='#nav-donaciones'
+                        type='button'
+                        role='tab'
+                        aria-controls='nav-donaciones'
+                        aria-selected='false'
+                >Viandas donadas por colaboradores
+                </button>
+            </div>
+        </nav>
+
+        <div class='tab-content' id='nav-tabContent'>
+            <div
+                    class='tab-pane fade show active'
+                    id='nav-fallas'
+                    role='tabpanel'
+                    aria-labelledby='nav-fallas-tab'
+                    tabindex='0'
+            >
+                <!-- Reporte: Fallas por heladera -->
+                <div class='mb-4 report-table' id='fallas'>
+                    <table class='table table-hover'>
+                        <thead>
+                        <tr>
+                            <th scope='col'>Heladera</th>
+                            <th scope='col'>Tipo de falla</th>
+                            <th scope='col'>Fecha y hora</th>
+                            <th scope='col'>Resuelto</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope='row'>Medrano</th>
+                            <td>Alerta - Fraude</td>
+                            <td>28-06-2024 21:30</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Campus</th>
+                            <td>Falla técnica</td>
+                            <td>14-06-2024 17:24</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Medrano</th>
+                            <td>Alerta - Temperatura</td>
+                            <td>10-05-2024 11:30</td>
+                            <td>Sí</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <button class='boton report-button'>Descargar como PDF</button>
+                </div>
+            </div>
+            <div
+                    class='tab-pane fade'
+                    id='nav-movimiento'
+                    role='tabpanel'
+                    aria-labelledby='nav-movimiento-tab'
+                    tabindex='0'
+            >
+                <!-- Reporte: Viandas retiradas/colocadas por heladera -->
+                <div class='mb-4 report-table' id='viandas-retiradas'>
+                    <table class='table table-hover'>
+                        <thead>
+                        <tr>
+                            <th scope='col'>Heladera</th>
+                            <th scope='col'>Tipo de colaboración</th>
+                            <th scope='col'>Cant. viandas</th>
+                            <th scope='col'>Colaborador</th>
+                            <th scope='col'>Fecha y hora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope='row'>Campus</th>
+                            <td>Donación</td>
+                            <td>24</td>
+                            <td>Margarita Roldán</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Campus</th>
+                            <td>Donación</td>
+                            <td>30</td>
+                            <td>Yasuri Yamileth</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Medrano</th>
+                            <td>Distribución</td>
+                            <td>10</td>
+                            <td>Juan Carlos</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Medrano</th>
+                            <td>Distribución</td>
+                            <td>20</td>
+                            <td>Yasuri Yamileth</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Medrano</th>
+                            <td>Donación</td>
+                            <td>5</td>
+                            <td>Cami</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <button class='boton report-button'>Descargar como PDF</button>
+                </div>
+            </div>
+            <div
+                    class='tab-pane fade'
+                    id='nav-donaciones'
+                    role='tabpanel'
+                    aria-labelledby='nav-donaciones-tab'
+                    tabindex='0'
+            >
+                <!-- Reporte: Viandas donadas por colaboradores -->
+                <div class='mb-4 report-table' id='viandas-donadas'>
+                    <table class='table table-hover'>
+                        <thead>
+                        <tr>
+                            <th scope='col'>Colaborador</th>
+                            <th scope='col'>Cant. ingresadas</th>
+                            <th scope='col'>Cant. distribuidas</th>
+                            <th scope='col'>Fecha y hora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope='row'>Yasuri Yamileth</th>
+                            <td>30</td>
+                            <td>-</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Yasuri Yamileth</th>
+                            <td>-</td>
+                            <td>20</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Margarita Roldán</th>
+                            <td>24</td>
+                            <td>-</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Juan Carlos</th>
+                            <td>-</td>
+                            <td>10</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        <tr>
+                            <th scope='row'>Cami</th>
+                            <td>5</td>
+                            <td>-</td>
+                            <td>10-05-2024 11:30</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class='boton report-button'>Descargar como PDF</button>
+                </div>
+            </div>
+        </div>
+        <div class='reportes-pdfs'>
+            <h3>Reportes Generados</h3>
+            <ul>
+                {{#each pdfFiles}}
+                    <li><a href='/reportes/pdfs/{{this}}' target='_blank'>{{this}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+
+
+    </section>
+
+{{! <script src='js/reportes.js'></script> }}
+{{/partial}}
+{{> layouts/main }}

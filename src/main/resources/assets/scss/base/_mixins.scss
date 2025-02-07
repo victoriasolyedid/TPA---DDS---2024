@@ -1,0 +1,29 @@
+@mixin max-tablet {
+    @media screen and (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 577px) and (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin grilla ($filas, $columnas, $gap) {
+    display: grid;
+    grid-template-rows: $filas;
+    grid-template-columns: $columnas;
+    gap: $gap;
+}
+
+@mixin img-fondo ($url, $bg-position) {
+    background-image: url($url);
+    background-position: $bg-position;
+}

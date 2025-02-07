@@ -1,0 +1,147 @@
+{{#partial "contenido"}}
+{{!PERSONA HUMANA}}
+    {{#if (eq role 'HUMANA')}}
+        <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+            <div class="container mt-5" style="max-width: 600px;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Detalle del usuario</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="detalles-usuario">
+                            {{#if actualizado}}
+                                <div class='alert alert-success' role='alert'>
+                                    Los datos fueron modificados con éxito.
+                                </div>
+                            {{/if}}
+                            {{#if error}}
+                                <div class='alert alert-error' role='alert'>
+                                    Ocurrió un error al modificar los datos del usuario.
+                                </div>
+                            {{/if}}
+
+                            <form method='POST' action="/mis-datos" role="form">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" id="nombre"
+                                           value="{{datosColab.camposCompletos.nombre}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" class="form-control" name="apellido" id="apellido"
+                                           value="{{datosColab.camposCompletos.apellido}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Correo Electrónico</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           value="{{datosColab.camposCompletos.email}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="text" class="form-control" name="telefono" id="telefono"
+                                           placeholder="{{datosColab.camposCompletos.telefono}}"
+                                           value="{{datosColab.camposCompletos.telefono}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" class="form-control" name="direccion" id="direccion"
+                                           placeholder="{{datosColab.camposCompletos.direccion}}"
+                                           value="{{datosColab.camposCompletos.direccion}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control" name="fecha_nacimiento"
+                                           id="fecha_nacimiento" value="{{datosColab.camposCompletos.fecha_nacimiento}}"
+                                           readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="numero_documento">Número de Documento</label>
+                                    <input type="text" class="form-control" name="numero_documento"
+                                           id="numero_documento" value="{{datosColab.camposCompletos.numero_documento}}"
+                                           readonly>
+                                </div>
+
+                                <button id="editar-perfil" type="button" class="btn btn-primary mt-3">Editar Perfil
+                                </button>
+                                <button id="guardar-cambios" type="submit" class="btn btn-success mt-3"
+                                        style="display: none;">Guardar Cambios
+                                </button>
+                                <button id="cancelar-cambios" type="reset" class="btn btn-secondary mt-3"
+                                        style="display: none;">Cancelar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
+    {{#if (eq role 'JURIDICA')}}
+        <div class='d-grid gap-2 d-md-flex justify-content-md-end mb-3'>
+            {{!PERSONA JURIDICA}}
+            <div class="container mt-5" style="max-width: 600px;">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Detalle del usuario</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="detalles-usuario">
+                            <form>
+                                <div class="form-group">
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="email" class="form-control" id="email"
+                                           value="{{datosColab.camposCompletos.email}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="razon_social">Razón social</label>
+                                    <input type="text" class="form-control" id="razon_social"
+                                           value="{{datosColab.camposCompletos.razon_social}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rubro">Rubro</label>
+                                    <input type="text" class="form-control" id="rubro"
+                                           value="{{datosColab.camposCompletos.rubro}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefono"
+                                           placeholder="{{datosColab.camposCompletos.telefono}}"
+                                           value="{{datosColab.camposCompletos.telefono}}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="direccion">Dirección</label>
+                                    <input type="text" class="form-control" id="direccion"
+                                           placeholder="{{datosColab.camposCompletos.direccion}}"
+                                           value="{{datosColab.camposCompletos.direccion}}" readonly>
+                                </div>
+                            </form>
+                        </div>
+                        <button id="editar-perfil-juridica" class="btn btn-primary mt-3">Editar Perfil</button>
+                        <button id="guardar-cambios-juridica" class="btn btn-success mt-3" style="display: none;">
+                            Guardar Cambios
+                        </button>
+                        <button id="cancelar-cambios-juridica" class="btn btn-secondary mt-3" style="display: none;">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
+    <style>
+        .form-control[readonly] {
+            background-color: #e9ecef; /* Color gris */
+            cursor: not-allowed;
+        }
+    </style>
+
+    {{#if (eq role 'JURIDICA')}}
+        <script src="js/profileJuridica.js"></script>
+    {{else}}
+        <script src="js/profileHumana.js"></script>
+    {{/if}}
+{{/partial}}
+{{> layouts/main }}
+

@@ -1,0 +1,149 @@
+{{#partial "contenido"}}
+    <div class="container mt-4">
+        <!-- Título -->
+        <div class="row mb-4">
+            <div class="col text-center">
+                <h3>Heladeras</h3>
+            </div>
+        </div>
+
+        <!-- Fila de contenido principal -->
+        <div class="row">
+            <!-- Columna para las pestañas de navegación y contenido -->
+            <div class="col-md-6">
+                <!-- Pestañas de navegación -->
+                <ul class="nav nav-tabs" id="nav-tabs2">
+                    <li class="nav-item">
+                        <a class="nav-link {{#if (eq vista 'todas')}}active{{/if}}" href="#" data-target="section1">Heladeras</a>
+                    </li>
+                    {{#if (eq role 'JURIDICA')}}
+                        <li class="nav-item">
+                            <a class="nav-link {{#if (eq vista 'mis-heladeras')}}active{{/if}}" href="#"
+                               data-target="section2">Mis heladeras</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{#if (eq vista 'mis-suscripciones')}}active{{/if}}" href="#"
+                               data-target="section3">Mis suscripciones</a>
+                        </li>
+                    {{/if}}
+                    {{#if (eq role 'HUMANA')}}
+                        <li class="nav-item">
+                            <a class="nav-link {{#if (eq vista 'mis-suscripciones')}}active{{/if}}" href="#"
+                               data-target="section3">Mis suscripciones</a>
+                        </li>
+                    {{/if}}
+                </ul>
+                <!-- Formulario de búsqueda -->
+                <!-- <form class="d-flex my-3">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-primary" type="submit">Buscar</button>
+                </form> -->
+
+                <!-- Contenido de las pestañas -->
+                <div id="section1" class="tab-content">
+                    <div class="list-group">
+                        {{#each heladeras}}
+                            <a href="#" class="list-group-item list-group-item-action" id="heladera-{{this.id}}"
+                               onclick="marcarUbicacion()">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{this.nombre}}</h5>
+                                </div>
+                                <p class="mb-1">{{this.ubicacion.calle}} {{this.ubicacion.altura}}
+                                    , {{this.ubicacion.provincia.provincia}}, {{this.ubicacion.localidad.localidad}}</p>
+                            </a>
+                        {{/each}}
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <input class="btn btn-primary mb-2" type="button" value="Reportar Falla"
+                               onclick="redirigirReportarFalla()">
+                        <input class="btn btn-primary mb-2" type="submit" value="Suscribirse"
+                               onclick="redirigirNuevaSuscripcion()">
+                        <input class="btn btn-primary mb-2" type="submit" value="Solicitar Apertura"
+                               onclick="redirigirNuevaApertura()">
+                        {{#if (eq role 'JURIDICA')}}
+                            <input class="btn btn-primary mb-2" type="reset" value="Nueva Heladera"
+                                   onclick="redirigirNuevaHeladera()">
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div id="section2" class="tab-content" style="display: none;">
+                    <div class="list-group">
+                        {{#each misHeladeras}}
+                            <a href="#" class="list-group-item list-group-item-action" id="misHeladera-{{this.id}}"
+                               onclick="marcarUbicacion()">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{this.nombre}}</h5>
+                                </div>
+                                <p class="mb-1">{{this.ubicacion.calle}} {{this.ubicacion.altura}}
+                                    , {{this.ubicacion.provincia.provincia}}, {{this.ubicacion.localidad.localidad}}</p>
+                            </a>
+                        {{/each}}
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <input class="btn btn-primary" type="submit" value="Modificar">
+                        <input class="btn btn-primary" type="submit" value="Ver alertas">
+                    </div>
+                </div>
+
+                <div id="section3" class="tab-content" style="display: none;">
+                    <div class="list-group">
+                        {{#each misSuscripciones}}
+                            <a href="#" class="list-group-item list-group-item-action"
+                               id="misHeladerasSuscriptas-{{this.id}}" onclick="marcarUbicacion()">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{this.nombre}}</h5>
+                                </div>
+                                <p class="mb-1">{{this.ubicacion.calle}} {{this.ubicacion.altura}}
+                                    , {{this.ubicacion.provincia.provincia}}, {{this.ubicacion.localidad.localidad}}</p>
+                            </a>
+                        {{/each}}
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <input class="btn btn-primary" type="submit" value="Desuscribirse">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna para el mapa -->
+            <div class="col-md-6">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirigirNuevaHeladera() {
+            window.location.href = '/nueva-heladera';
+        }
+    </script>
+
+    <script>
+        function redirigirReportarFalla() {
+            window.location.href = '/reportar-falla';
+        }
+    </script>
+
+    <script>
+        function redirigirNuevaSuscripcion() {
+            window.location.href = '/nueva-suscripcion';
+        }
+    </script>
+
+    <script>
+        function redirigirNuevaApertura() {
+            window.location.href = '/nueva-apertura';
+        }
+    </script>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/map-heladeras.js"></script>
+    <script>
+        const jsonString = '[{\"id\":1,\"ubicacion\":{\"id\":1,\"coordenadas\":{\"latitud\":123.456,\"longitud\":78.91},\"calle\":\"Avenida San Martin\",\"altura\":\"4453\",\"provincia\":{\"id\":1,\"provincia\":\"Buenos Aires\"},\"localidad\":{\"id\":1,\"localidad\":\"CABA\"}},\"capacidad\":20,\"fechaFuncionamiento\":[2024,12,6],\"sensorDeTemperatura\":null,\"sensorDeMovimiento\":null,\"activa\":true,\"modelo\":null,\"temperaturaActual\":null,\"nombre\":\"Heladera Agronomia\",\"cantViandas\":0,\"viandas\":null,\"permisos\":null,\"solicitudes\":null,\"aperturas\":null},{\"id\":2,\"ubicacion\":{\"id\":2,\"coordenadas\":null,\"calle\":\"Mozart\",\"altura\":\"2300\",\"provincia\":{\"id\":1,\"provincia\":\"Buenos Aires\"},\"localidad\":{\"id\":1,\"localidad\":\"CABA\"}},\"capacidad\":24,\"fechaFuncionamiento\":[2024,12,6],\"sensorDeTemperatura\":null,\"sensorDeMovimiento\":null,\"activa\":true,\"modelo\":null,\"temperaturaActual\":null,\"nombre\":\"Heladera UTN\",\"cantViandas\":0,\"viandas\":null,\"permisos\":null,\"solicitudes\":null,\"aperturas\":null},{\"id\":3,\"ubicacion\":{\"id\":3,\"coordenadas\":{\"latitud\":123.456,\"longitud\":78.91},\"calle\":\"Cuenca\",\"altura\":\"3035\",\"provincia\":{\"id\":1,\"provincia\":\"Buenos Aires\"},\"localidad\":{\"id\":1,\"localidad\":\"CABA\"}},\"capacidad\":50,\"fechaFuncionamiento\":[2024,12,6],\"sensorDeTemperatura\":null,\"sensorDeMovimiento\":null,\"activa\":true,\"modelo\":null,\"temperaturaActual\":null,\"nombre\":\"Heladera Villa del Parque\",\"cantViandas\":0,\"viandas\":null,\"permisos\":null,\"solicitudes\":null,\"aperturas\":null}]';
+        const todasLasHeladeras = JSON.parse(jsonString);
+        console.log(todasLasHeladeras); // Log the parsed JSON object
+        marcarHeladeras();
+    </script>
+    <script src="js/heladeras.js"></script>
+{{/partial}}
+{{> layouts/main }}
